@@ -9,9 +9,9 @@
 #   - LLM (LangChain-Groq: Llama-3.3-70B)
 # =====================================================================
 
-# __import__('pysqlite3')                                                 # Dynamically imports pysqlite3 (a standalone SQLite module that supports modern features).
-# import sys
-# sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')                   # Replaces the default sqlite3 module with pysqlite3. This is helpful in environments like Streamlit Cloud where SQLite might not support fulltext search (FTS5) or other features used in vector databases.
+__import__('pysqlite3')                                                 # Dynamically imports pysqlite3 (a standalone SQLite module that supports modern features).
+import sys
+sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')                   # Replaces the default sqlite3 module with pysqlite3. This is helpful in environments like Streamlit Cloud where SQLite might not support fulltext search (FTS5) or other features used in vector databases.
 
 # ==============================
 # 🧱 1️⃣ IMPORTS & SETUP
@@ -254,4 +254,5 @@ with st.expander("🔄 Reset Session History"):
     if st.button("Reset History"):
         st.session_state.history = []
         st.session_state.cache_hits = 0
+
         st.session_state.cache_misses = 0
