@@ -16,6 +16,10 @@ sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')                   # Replac
 # ==============================
 # 🧱 1️⃣ IMPORTS & SETUP
 # ==============================
+import os
+os.environ["STREAMLIT_WATCHER_TYPE"] = "none"
+
+
 import streamlit as st
 import os, time, tempfile
 from datetime import datetime
@@ -261,4 +265,5 @@ with st.expander("🔄 Reset Session History"):
         st.session_state.cache_hits = 0
 
         st.session_state.cache_misses = 0
+
 
