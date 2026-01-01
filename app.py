@@ -59,7 +59,12 @@ EMBED_MODEL = "all-MiniLM-L6-v2"
 CACHE_THRESHOLD = 0.88
 
 # Embeddings
-embeddings = HuggingFaceEmbeddings(model_name=EMBED_MODEL)
+# embeddings = HuggingFaceEmbeddings(model_name=EMBED_MODEL)      # modified after the meta tensor error occured
+embeddings = HuggingFaceEmbeddings(
+    model_name=EMBED_MODEL,
+    model_kwargs={"device": "cpu"},
+    encode_kwargs={"normalize_embeddings": True}
+)
 
 # Persistent Vector DB & Semantic Cache
 vector_db = Chroma(
@@ -256,3 +261,4 @@ with st.expander("🔄 Reset Session History"):
         st.session_state.cache_hits = 0
 
         st.session_state.cache_misses = 0
+
